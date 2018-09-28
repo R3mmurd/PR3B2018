@@ -55,6 +55,22 @@ public:
   }
 };
 
+// Functor para ser usado por variadic_search
+class FirstHeightGreaterThanV2
+{
+public:
+  bool operator () (const Person & p, float h) const
+  {
+    return p.get_height() > h;
+  }
+};
+
+// Función para ser usada por variadic_search para estatura variable.
+bool first_height_greater_than(const Person & p, float h)
+{
+  return p.get_height() > h;
+}
+
 int main()
 {
   rng_t rng(chrono::system_clock::now().time_since_epoch().count()
@@ -79,63 +95,109 @@ int main()
 
   cout << ps << endl;
 
-  Person * r1 = search(ps, first_height_greater_than_180);
+  Person * r = search(ps, first_height_greater_than_180);
 
   cout << "Result searching with a standar C function\n";
   
-  if (r1)
-    cout << r1->to_string()
+  if (r)
+    cout << r->to_string()
 	 << " is the first person with height greater than 1.80\n";
   else
     cout << " There is not person with height greater than 1.80\n";
 
-  Person * r2 = search(ps, FirstHeightGreaterThan180());
+  r = search(ps, FirstHeightGreaterThan180());
 
   cout << "Result searching with a functor\n";
 
-  if (r2)
-    cout << r2->to_string()
+  if (r)
+    cout << r->to_string()
 	 << " is the first person with height greater than 1.80\n";
   else
     cout << " There is not person with height greater than 1.80\n";
 
-  Person * r3 = search(ps, [] (const Person & p)
-		       {
-			 return p.get_height() > 1.8f;
-		       });
-
+  r = search(ps, [] (const Person & p)
+	     {
+	       return p.get_height() > 1.8f;
+	     });
+  
   cout << "Result searching with a lambda function\n";
 
-  if (r3)
-    cout << r3->to_string()
+  if (r)
+    cout << r->to_string()
 	 << " is the first person with height greater than 1.80\n";
   else
     cout << " There is not person with height greater than 1.80\n";
 
-  Person * r4 = search(ps, FirstHeightGreaterThan(1.5));
+  cout << "Result searching with a functor with h as variable\n";
+
+  r = search(ps, FirstHeightGreaterThan(1.5));
 
   cout << "Result searching with a functor\n";
 
-  if (r4)
-    cout << r4->to_string()
+  if (r)
+    cout << r->to_string()
 	 << " is the first person with height greater than 1.50\n";
   else
     cout << " There is not person with height greater than 1.50\n";
 
   float h = 1.9;
 
-  Person * r5 = search(ps, [h] (const Person & p)
-		       {
-			 return p.get_height() > h;
-		       });
+  cout << "Result searching with a lambda function with h as variable\n";
 
+  r = search(ps, [h] (const Person & p)
+	     {
+	       return p.get_height() > h;
+	     });
+  
   cout << "Result searching with a lambda function\n";
 
-  if (r5)
-    cout << r5->to_string()
+  if (r)
+    cout << r->to_string()
 	 << " is the first person with height greater than " << h << endl;
   else
     cout << " There is not person with height greater than " << h << endl;
+
+  cout << "Result searching with a C standar with h as variable by using "
+       << "variadic_seach\n";
+
+  h = 1.85;
+  r = variadic_search(ps, first_height_greater_than, h);
+  
+  if (r)
+    cout << r->to_string()
+	 << " is the first person with height greater than " << h << endl;
+  else
+    cout << " There is not person with height greater than " << h << endl;
+
+  cout << "Result searching with a lambda function with h as variable by "
+       << "usinfg variadic_seach\n";
+  h = 1.6;
+  
+  r = variadic_search(ps, [] (const Person & p, float h)
+		      {
+			return p.get_height() > h;
+		      }, h);
+  
+  if (r)
+    cout << r->to_string()
+	 << " is the first person with height greater than " << h << endl;
+  else
+    cout << " There is not person with height greater than " << h << endl;
+
+  cout << "Result searching with a functor with h as variable by using "
+       << "variadic_search\n";
+
+  h = 1.3;
+  r = variadic_search(ps, FirstHeightGreaterThanV2(), h);
+
+  if (r)
+    cout << r->to_string()
+	 << " is the first person with height greater than " << h << endl;
+  else
+    cout << " There is not person with height greater than " << h << endl;
+
+  // Escribe versiones que te permitan pasar varios parámetros y combinarlos
+  // en la búsqueda.
    
   return 0;
 }
