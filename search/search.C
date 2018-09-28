@@ -42,6 +42,19 @@ public:
   }
 };
 
+class FirstHeightGreaterThan
+{
+  float h;
+public:
+  FirstHeightGreaterThan(float _h) : h(_h) {}
+
+
+  bool operator () (const Person & p) const
+  {
+    return p.get_height() > h;
+  }
+};
+
 int main()
 {
   rng_t rng(chrono::system_clock::now().time_since_epoch().count()
@@ -98,6 +111,31 @@ int main()
 	 << " is the first person with height greater than 1.80\n";
   else
     cout << " There is not person with height greater than 1.80\n";
+
+  Person * r4 = search(ps, FirstHeightGreaterThan(1.5));
+
+  cout << "Result searching with a functor\n";
+
+  if (r4)
+    cout << r4->to_string()
+	 << " is the first person with height greater than 1.50\n";
+  else
+    cout << " There is not person with height greater than 1.50\n";
+
+  float h = 1.9;
+
+  Person * r5 = search(ps, [h] (const Person & p)
+		       {
+			 return p.get_height() > h;
+		       });
+
+  cout << "Result searching with a lambda function\n";
+
+  if (r5)
+    cout << r5->to_string()
+	 << " is the first person with height greater than " << h << endl;
+  else
+    cout << " There is not person with height greater than " << h << endl;
    
   return 0;
 }
