@@ -28,11 +28,17 @@ ostream & operator << (ostream & out, const vector<Person> & ps)
   return out;
 }
 
+/** Search criterium to a person with a height greater than 1.8 meters
+    as a C standar function.
+*/
 bool first_height_greater_than_180(const Person & p)
 {
   return p.get_height() > 1.8;
 }
 
+/** Search criterium to a person with a height greater than 1.8 meters as
+    a functor.
+*/
 class FirstHeightGreaterThan180
 {
 public:
@@ -42,9 +48,14 @@ public:
   }
 };
 
+/** Search criterium to a person with a height greater than any value as
+    a functor. The constructor receives the value to be compared inside the
+    call method.
+*/
 class FirstHeightGreaterThan
 {
   float h;
+  
 public:
   FirstHeightGreaterThan(float _h) : h(_h) {}
 
@@ -55,7 +66,9 @@ public:
   }
 };
 
-// Functor para ser usado por variadic_search
+/** Search criterium to a person with a height greater than any value as
+    a functor to be used in variadic_search.
+*/
 class FirstHeightGreaterThanV2
 {
 public:
@@ -65,7 +78,9 @@ public:
   }
 };
 
-// Función para ser usada por variadic_search para estatura variable.
+/** Search criterium to a person with a height greater than any value as
+    a C standar function to be used in variadic_search.
+*/
 bool first_height_greater_than(const Person & p, float h)
 {
   return p.get_height() > h;
@@ -196,8 +211,8 @@ int main()
   else
     cout << " There is not person with height greater than " << h << endl;
 
-  // Escribe versiones que te permitan pasar varios parámetros y combinarlos
-  // en la búsqueda.
-   
+  // Write your own searches with any criterium by using the different ways to
+  // implement them.
+  
   return 0;
 }
