@@ -70,10 +70,10 @@ public:
   std::string to_string() const
   {
     std::stringstream s;
-    s << "{ name: \"" << name  << "\", age: " << age
+    s << "< name: \"" << name  << "\", age: " << age
       << ", height: " << round(height, 2)
       << ", weight: " << round(weight, 2)
-      << ", has glasses: " << (glasses ? "true" :  "false") << " }";
+      << ", has glasses: " << (glasses ? "true" :  "false") << " >";
     return s.str();
   }
 
