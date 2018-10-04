@@ -1,7 +1,7 @@
-/* This program performs an experimental proof the excecution time 
+/* This program performs an experimental proof the execution time 
    of the binary search algorithm.
 
-   The experiment consists in creating an array of N element, starting
+   The experiment consists of creating an array with N elements, starting
    with N = 2^10 = 1024. This sequence is built sorted from 0 to N-1.
    Then is executed the search methods to search the value N (failed
    search, in other words, the worst case). The input size is
