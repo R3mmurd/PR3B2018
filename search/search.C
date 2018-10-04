@@ -118,7 +118,7 @@ int main()
     cout << r->to_string()
 	 << " is the first person with height greater than 1.80\n";
   else
-    cout << " There is not person with height greater than 1.80\n";
+    cout << "There is not person with height greater than 1.80\n";
 
   r = search(ps, FirstHeightGreaterThan180());
 
@@ -128,7 +128,7 @@ int main()
     cout << r->to_string()
 	 << " is the first person with height greater than 1.80\n";
   else
-    cout << " There is not person with height greater than 1.80\n";
+    cout << "There is not person with height greater than 1.80\n";
 
   r = search(ps, [] (const Person & p)
 	     {
@@ -141,19 +141,17 @@ int main()
     cout << r->to_string()
 	 << " is the first person with height greater than 1.80\n";
   else
-    cout << " There is not person with height greater than 1.80\n";
+    cout << "There is not person with height greater than 1.80\n";
 
   cout << "Result searching with a functor with h as variable\n";
 
   r = search(ps, FirstHeightGreaterThan(1.5));
 
-  cout << "Result searching with a functor\n";
-
   if (r)
     cout << r->to_string()
 	 << " is the first person with height greater than 1.50\n";
   else
-    cout << " There is not person with height greater than 1.50\n";
+    cout << "There is not person with height greater than 1.50\n";
 
   float h = 1.9;
 
@@ -164,25 +162,24 @@ int main()
 	       return p.get_height() > h;
 	     });
   
-  cout << "Result searching with a lambda function\n";
-
   if (r)
     cout << r->to_string()
 	 << " is the first person with height greater than " << h << endl;
   else
-    cout << " There is not person with height greater than " << h << endl;
+    cout << "There is not person with height greater than " << h << endl;
 
   cout << "Result searching with a C standar with h as variable by using "
        << "variadic_seach\n";
 
   h = 1.85;
+  
   r = variadic_search(ps, first_height_greater_than, h);
   
   if (r)
     cout << r->to_string()
 	 << " is the first person with height greater than " << h << endl;
   else
-    cout << " There is not person with height greater than " << h << endl;
+    cout << "There is not person with height greater than " << h << endl;
 
   cout << "Result searching with a lambda function with h as variable by "
        << "usinfg variadic_seach\n";
@@ -197,19 +194,19 @@ int main()
     cout << r->to_string()
 	 << " is the first person with height greater than " << h << endl;
   else
-    cout << " There is not person with height greater than " << h << endl;
+    cout << "There is not person with height greater than " << h << endl;
 
   cout << "Result searching with a functor with h as variable by using "
        << "variadic_search\n";
 
-  h = 1.3;
+  h = 1.6;
   r = variadic_search(ps, FirstHeightGreaterThanV2(), h);
 
   if (r)
     cout << r->to_string()
 	 << " is the first person with height greater than " << h << endl;
   else
-    cout << " There is not person with height greater than " << h << endl;
+    cout << "There is not person with height greater than " << h << endl;
 
   // Write your own searches with any criterium by using the different ways to
   // implement them.
