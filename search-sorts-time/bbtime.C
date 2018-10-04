@@ -1,4 +1,4 @@
-/* This program performs an experimental proof the execution time 
+/* This program performs an experimental proof of the execution time 
    of the binary search algorithm.
 
    The experiment consists of creating an array with N elements, starting
@@ -10,7 +10,7 @@
    Each experiment is executed 20 times to get the average execution
    time.
 
-   The files bb_plot.dat and bb_plot.gp are generated. You need to
+   The files bb_data.dat and bb_plot.gp are generated. You need to
    install gnuplot in order to plot this data with the shell command
    gnuplot bb_plot.gp. It will be generated the file bb_graphic.png.
 
@@ -80,7 +80,7 @@ int main()
 	  	  
 	  delete [] a;
 	  
-	  size <<= 1; // Duplico el tamaño del arreglo
+	  size <<= 1;
 	}
     }
 
