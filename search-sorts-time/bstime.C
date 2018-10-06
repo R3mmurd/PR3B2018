@@ -2,7 +2,7 @@
    of the binary search algorithm.
 
    The experiment consists of creating an array with N elements, starting
-   with N = 2^10 = 1024. This sequence is built sorted from 0 to N-1.
+   with N = 2^32. This sequence is built sorted from 0 to N-1.
    Then is executed the search methods to search the value N (failed
    search, in other words, the worst case). The input size is
    duplicated 20 times to get the plotting data.
@@ -23,15 +23,18 @@
 # include <chrono>
 
 using namespace std;
+using namespace chrono;
+
+using ll = long long;
 
 template <typename T, class Compare = std::less<T>>
-int binary_search(T * a, int l, int r, const T & k,
-		  const Compare & cmp = Compare())
+ll binary_search(T * a, ll l, ll r, const T & k,
+		 const Compare & cmp = Compare())
 {
   if (l > r)
     return l;
 
-  int m = (l + r) / 2;
+  ll m = (l + r) / 2;
 
   if (cmp(k, a[m]))
     return binary_search(a, k, l, m - 1, cmp);
@@ -57,21 +60,21 @@ int main()
       cout << "\nExperiment: " << k + 1 << '\n'
 	   << "----------------\n";
 	
-      int size = 1024; // 2^10
+      ll size = 2147483648; // 2^32
 
       for (auto i = 0; i < NUM_SAMPLES; ++i)
 	{
 	  sizes[i] = size;
 	  
-	  int * a = new int[size];
+	  ll * a = new ll[size];
 	  
 	  for (auto j = 0; j < size; ++j)
 	    a[j] = j;
 	  
-	  auto t0 = chrono::high_resolution_clock::now().time_since_epoch();
+	  auto s = high_resolution_clock::now();
 	  binary_search(a, 0, size - 1, size);
-	  auto t1 = chrono::high_resolution_clock::now().time_since_epoch();
-	  auto dt = chrono::duration_cast<chrono::nanoseconds>(t1-t0).count();
+	  auto e = high_resolution_clock::now();
+	  auto dt = duration_cast<nanoseconds>(e-s).count();
 
 	  cout << "Input size: " << size
 	       << "\tExecution time: " << dt << " ns\n";

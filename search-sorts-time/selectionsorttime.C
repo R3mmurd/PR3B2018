@@ -17,6 +17,7 @@
 # include <cassert>
 
 using namespace std;
+using namespace chrono;
 
 template <typename T, class Compare = std::less<T>>
 bool is_sorted(T * a, int n, const Compare & cmp = Compare())
@@ -60,10 +61,10 @@ int main()
 	a[j] = unif(rng); // Comment this to fill sorted
       // a[j] = j; // Uncomment this to fill sorted
 
-      auto t0 = chrono::high_resolution_clock::now().time_since_epoch();
+      auto t0 = high_resolution_clock::now();
       selection_sort(a, size);
-      auto t1 = chrono::high_resolution_clock::now().time_since_epoch();
-      auto dt = chrono::duration_cast<chrono::milliseconds>(t1-t0).count();
+      auto t1 = high_resolution_clock::now();
+      auto dt = duration_cast<milliseconds>(t1-t0).count();
       assert(is_sorted(a, size));
       
       delete [] a;
