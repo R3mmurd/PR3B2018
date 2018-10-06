@@ -10,9 +10,9 @@
    Each experiment is executed 20 times to get the average execution
    time.
 
-   The files bb_data.dat and bb_plot.gp are generated. You need to
+   The files bs_data.dat and bs_plot.gp are generated. You need to
    install gnuplot in order to plot this data with the shell command
-   gnuplot bb_plot.gp. It will be generated the file bb_graphic.png.
+   gnuplot bs_plot.gp. It will be generated the file bs_graphic.png.
 
    @author: Alejandro J. Mujica
    @date:   20/11/2015
@@ -84,7 +84,7 @@ int main()
 	}
     }
 
-  ofstream file("bb_data.dat");
+  ofstream file("bs_data.dat");
 
   for (auto i = 0; i < NUM_SAMPLES; ++i)
     file << sizes[i] << '\t' << sum_times[i] / double(NUM_EXPS)
@@ -92,14 +92,14 @@ int main()
       
   file.close();
   
-  file.open("bb_plot.gp");
+  file.open("bs_plot.gp");
 
   file << "set title 'Binary Search'\n"
        << "set xlabel 'Input size'\n"
        << "set ylabel 'Execution time (ns)'\n"
        << "set term png\n"
-       << "set output 'bb_graphic.png'\n"
-       << "plot 'bb_data.dat' w l\n"
+       << "set output 'bs_graphic.png'\n"
+       << "plot 'bs_data.dat' w l\n"
        << "quit\n";
   
   file.close();
