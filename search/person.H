@@ -2,7 +2,7 @@
 # define PERSON_H
 
 # include <sstream>
-# include <math_utils.H>
+# include "math_utils.H"
 
 class Person
 {
@@ -13,7 +13,7 @@ class Person
   bool        glasses;
 
 public:
-  Person(const string & n, int a, float h, float w, bool g)
+  Person(const std::string & n, int a, float h, float w, bool g)
     : name(n), age(a), height(h), weight(w), glasses(g)
   {
     // empty
@@ -70,10 +70,10 @@ public:
   std::string to_string() const
   {
     std::stringstream s;
-    s << "{ name: \"" << name  << "\", age: " << age
+    s << "< name: \"" << name  << "\", age: " << age
       << ", height: " << round(height, 2)
       << ", weight: " << round(weight, 2)
-      << ", has glasses: " << (glasses ? "true" :  "false") << " }";
+      << ", has glasses: " << (glasses ? "true" :  "false") << " >";
     return s.str();
   }
 
