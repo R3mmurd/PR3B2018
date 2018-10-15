@@ -2,7 +2,7 @@ CXX = clang++ -std=c++14
 
 OPT = -Ofast
 
-all: recursion queue-recursion mutual-recursion static-recursion
+all: recursion queue-recursion mutual-recursion static-recursion tuple
 
 recursion: recursion.C
 	$(CXX) $(OPT) $@.C -o $@
@@ -16,5 +16,8 @@ mutual-recursion: mutual-recursion.C
 static-recursion: static-recursion.C
 	$(CXX) $(OPT) $@.C -o $@
 
+tuple: tuple.C
+	$(CXX) $(OPT) $@.C -o $@
+
 clean:
-	$(RM) *~ recursion queue-recursion mutual-recursion static-recursion
+	$(RM) *~ recursion queue-recursion mutual-recursion static-recursion tuple
