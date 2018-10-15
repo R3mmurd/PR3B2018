@@ -68,7 +68,7 @@ int main()
   ull result1 = cut_rod(table, n);
   auto d1 = high_resolution_clock::now() - t0;
   cout << "Result with basic algorithm: " << result1 << endl;
-  cout << "Execution time: " << duration_casgiit st<nanoseconds>(d1).count()
+  cout << "Execution time: " << duration_cast<nanoseconds>(d1).count()
        << " ns\n";
 
   auto t1 = high_resolution_clock::now();
