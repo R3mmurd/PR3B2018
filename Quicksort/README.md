@@ -35,7 +35,7 @@ Each quicksort implementation is described below:
 By default, it is excecuted on an array with 10000 elements.
 
 ```bash
-$ ./qs-time-space 
+$ ./qs-time-space
 Basic quicksort
 ---------------
 Max stack size: 5001
