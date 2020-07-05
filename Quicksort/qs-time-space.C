@@ -79,7 +79,7 @@ Sz quicksort(int * a, int l, int r)
 /** Quicksort improved by stacking first the smaller partition in order to
     save memory.
 */
-Sz quicksort_first_improve(int * a, int l, int r)
+Sz quicksort_first_improvement(int * a, int l, int r)
 {
   stack<Partition> st;
   st.push(Partition(l, r));
@@ -131,7 +131,7 @@ int improved_partition(int * a, int l, int r)
 /** Quicksort improved by stacking first the smaller partition in order to
     save memory and also select the median as pivot in order to save time.
 */
-Sz quicksort_second_improve(int * a, int l, int r)
+Sz quicksort_second_improvement(int * a, int l, int r)
 {
   stack<Partition> st;
   st.push(Partition(l, r));
@@ -184,7 +184,7 @@ constexpr int QS_THRESHOLD = 40;
 /** Quicksort improved to call insertion_sort when the size of the array
     is less to QS_THRESHOLD
 */
-Sz quicksort_third_improve(int * a, int l, int r)
+Sz quicksort_third_improvement(int * a, int l, int r)
 {
   stack<Partition> st;
   st.push(Partition(l, r));
@@ -234,11 +234,11 @@ int main(int argc, char * argv[])
   auto t0 = system_clock::now();
   Sz m1 = quicksort(a1, 0, sz - 1);
   auto t1 = system_clock::now();
-  Sz m2 = quicksort_first_improve(a2, 0, sz - 1);
+  Sz m2 = quicksort_first_improvement(a2, 0, sz - 1);
   auto t2 = system_clock::now();
-  Sz m3 = quicksort_second_improve(a3, 0, sz - 1);
+  Sz m3 = quicksort_second_improvement(a3, 0, sz - 1);
   auto t3 = system_clock::now();
-  Sz m4 = quicksort_third_improve(a4, 0, sz - 1);
+  Sz m4 = quicksort_third_improvement(a4, 0, sz - 1);
   auto t4 = system_clock::now();
 
   string time_unit = "ms";
@@ -252,15 +252,15 @@ int main(int argc, char * argv[])
   cout << "---------------\n";
   cout << "Max stack size: " << m1 << endl;
   cout << "Execution time: " << dt1 << ' ' << time_unit << endl << endl;
-  cout << "Quicksort (first improve)\n";
+  cout << "Quicksort (first improvement)\n";
   cout << "-------------------------\n";
   cout << "Max stack size: " << m2 << endl;
   cout << "Execution time: " << dt2 << ' ' << time_unit << endl << endl;
-  cout << "Quicksort (second improve)\n";
+  cout << "Quicksort (second improvement)\n";
   cout << "--------------------------\n";
   cout << "Max stack size: " << m3 << endl;
   cout << "Execution time: " << dt3 << ' ' << time_unit << endl << endl;
-  cout << "Quicksort (third improve)\n";
+  cout << "Quicksort (third improvement)\n";
   cout << "--------------------------\n";
   cout << "Max stack size: " << m4 << endl;
   cout << "Execution time: " << dt4 << ' ' << time_unit << endl;
