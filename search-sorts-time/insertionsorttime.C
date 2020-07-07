@@ -1,11 +1,6 @@
 /* This program performs an experimental proof of the execution time 
    of the insertion sort algorithm.
 
-   The files insertion_sort_data.dat and insertion_sort_plot.gp are 
-   generated. You need to install gnuplot in order to plot this data with 
-   the shell command gnuplot insertion_sort_plot.gp. It will be generated the
-   file insertion_sort_graphic.png.
-
    Autor: Alejandro J. Mujica
    Fecha: 15/11/2015
 */
@@ -44,12 +39,16 @@ void insertion_sort(T * a, int n, const Compare & cmp = Compare())
     }
 }
 
-int main()
+int main(int argc, char * argv[])
 {
   mt19937_64 rng(time(nullptr) % mt19937_64::max());
   ofstream file("insertion_sort_data.dat");
 
-  unsigned size = 500;
+  bool sorted = argc > 1 and stoi(argv[1]) == 1;
+
+  cout << sorted << endl;
+
+  unsigned size = 512;
 
   for (auto i = 0; i < 10; ++i)
     {
@@ -57,9 +56,12 @@ int main()
 
       uniform_int_distribution<int> unif(0, size);
 
-      for (auto j = 0; j < size; ++j)
-	a[j] = unif(rng); // Comment this to fill sorted
-      // a[j] = j; // Uncomment this to fill sorted
+      if (sorted)
+	for (auto j = 0; j < size; ++j)
+	  a[j] = j;
+      else
+	for (auto j = 0; j < size; ++j)
+	  unif(rng);
 
       auto t0 = high_resolution_clock::now();
       insertion_sort(a, size);
