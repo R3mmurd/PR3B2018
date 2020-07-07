@@ -1,19 +1,6 @@
 /* This program performs an experimental proof of the execution time 
    of the binary search algorithm.
 
-   The experiment consists of creating an array with N elements, starting
-   with N = 2^32. This sequence is built sorted from 0 to N-1.
-   Then is executed the search methods to search the value N (failed
-   search, in other words, the worst case). The input size is
-   duplicated 20 times to get the plotting data.
-
-   Each experiment is executed 20 times to get the average execution
-   time.
-
-   The files bs_data.dat and bs_plot.gp are generated. You need to
-   install gnuplot in order to plot this data with the shell command
-   gnuplot bs_plot.gp. It will be generated the file bs_graphic.png.
-
    @author: Alejandro J. Mujica
    @date:   20/11/2015
 */
@@ -37,9 +24,9 @@ ll binary_search(T * a, ll l, ll r, const T & k,
   ll m = (l + r) / 2;
 
   if (cmp(k, a[m]))
-    return binary_search(a, k, l, m - 1, cmp);
+    return binary_search(a, l, m - 1, k, cmp);
   else if (cmp(a[m], k))
-    return binary_search(a, k, m + 1, r, cmp);
+    return binary_search(a, m + 1, r, k, cmp);
   
   return m;
 }
@@ -52,24 +39,26 @@ int main()
   unsigned sizes[NUM_SAMPLES];
   double sum_times[NUM_SAMPLES];
 
-  for (auto i = 0; i < NUM_SAMPLES; ++i)
+  for (int i = 0; i < NUM_SAMPLES; ++i)
     sum_times[i] = 0;
 
-  for (auto k = 0; k < NUM_EXPS; ++k)
+  for (int k = 0; k < NUM_EXPS; ++k)
     {
       cout << "\nExperiment: " << k + 1 << '\n'
 	   << "----------------\n";
 	
-      ll size = 2147483648; // 2^32
+      ll size = 1024; // 2^10
 
       for (auto i = 0; i < NUM_SAMPLES; ++i)
 	{
 	  sizes[i] = size;
 	  
 	  ll * a = new ll[size];
+
 	  
-	  for (auto j = 0; j < size; ++j)
+	  for (ll j = 0; j < size; ++j)
 	    a[j] = j;
+	  
 	  
 	  auto s = high_resolution_clock::now();
 	  binary_search(a, 0, size - 1, size);
@@ -82,7 +71,8 @@ int main()
 	  sum_times[i] += dt;
 	  	  
 	  delete [] a;
-	  
+
+	  cout << size << endl;
 	  size <<= 1;
 	}
     }
