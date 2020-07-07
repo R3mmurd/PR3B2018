@@ -90,3 +90,42 @@ $ eog insertion_sort_graphic.png
 ```
 
 ![insertion_sort_graphic.png](graphics/insertion_sort_graphic.png)
+
+## Selection sort
+
+The file [selectionsortime.C](selectionsortime.C) contains a program that
+performs an experimental proof of the execution time of the
+[selection sort algorithm](https://en.wikipedia.org/wiki/Selection_sort).
+
+### The experiment
+
+The experiment is the same applied in [insertionsorttime.C](insertionsorttime.C).
+
+### Output
+
+This programs generates two files: selection_sort_data.dat with the data to plot
+the size of the array vs the execution time, and selection_sort_plot.gp with
+the instructions to generate a graphic with [gnuplot](http://www.gnuplot.info/).
+
+### Usage
+
+Compiling the program:
+
+```bash
+$ make selectionorttime
+```
+
+Excecuting the program:
+
+```bash
+$ ./selectionsorttime
+```
+
+Generating the graphic:
+
+```bash
+$ gnuplot selection_sort_plot.gp 
+$ eog selection_sort_graphic.png
+```
+
+![selection_sort_graphic.png](graphics/selection_sort_graphic.png)

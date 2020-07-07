@@ -44,12 +44,14 @@ void selection_sort(T * a, int n, const Compare & cmp = Compare())
     }
 }
 
-int main()
+int main(int argc, char * argv[])
 {
   mt19937_64 rng(time(nullptr) % mt19937_64::max());
   ofstream file("selection_sort_data.dat");
 
-  unsigned size = 500;
+  bool sorted = argc > 1 and stoi(argv[1]) == 1;
+  
+  unsigned size = 512;
 
   for (auto i = 0; i < 10; ++i)
     {
@@ -57,10 +59,13 @@ int main()
 
       uniform_int_distribution<int> unif(0, size);
 
-      for (auto j = 0; j < size; ++j)
-	a[j] = unif(rng); // Comment this to fill sorted
-      // a[j] = j; // Uncomment this to fill sorted
-
+      if (sorted)
+	for (unsigned j = 0; j < size; ++j)
+	  a[j] = j;
+      else
+	for (unsigned j = 0; j < size; ++j)
+	  unif(rng);
+      
       auto t0 = high_resolution_clock::now();
       selection_sort(a, size);
       auto t1 = high_resolution_clock::now();
