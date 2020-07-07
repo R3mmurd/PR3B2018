@@ -26,9 +26,8 @@ def random_person(name):
         age=random.choice(range(18, 45)),
         height=random.uniform(1.5, 2.3),
         weight=random.uniform(60.0, 130.0),
-        has_glasses=random.choice([
-            True, True, True, False, False, False, False, False, False
-        ]))
+        has_glasses=random.random() < 0.3
+    )
     
 
 def search(s, c):
