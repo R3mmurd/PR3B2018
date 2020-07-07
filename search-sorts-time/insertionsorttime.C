@@ -46,8 +46,6 @@ int main(int argc, char * argv[])
 
   bool sorted = argc > 1 and stoi(argv[1]) == 1;
 
-  cout << sorted << endl;
-
   unsigned size = 512;
 
   for (auto i = 0; i < 10; ++i)
@@ -57,10 +55,10 @@ int main(int argc, char * argv[])
       uniform_int_distribution<int> unif(0, size);
 
       if (sorted)
-	for (auto j = 0; j < size; ++j)
+	for (unsigned j = 0; j < size; ++j)
 	  a[j] = j;
       else
-	for (auto j = 0; j < size; ++j)
+	for (unsigned j = 0; j < size; ++j)
 	  unif(rng);
 
       auto t0 = high_resolution_clock::now();

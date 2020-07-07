@@ -1,10 +1,5 @@
 """
 This file contains a colection of sort methods.
-
-In Python programming Language you can swap two elements
-by inverting them with the assignation operator like this:
-
-a, b = b, a
 """
 
 def less_to(x, y):

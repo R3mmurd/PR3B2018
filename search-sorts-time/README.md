@@ -129,3 +129,33 @@ $ eog selection_sort_graphic.png
 ```
 
 ![selection_sort_graphic.png](graphics/selection_sort_graphic.png)
+
+## Python code
+
+There are two Python files. [sort_algorithms.py](sort_algorithms.py) contains
+the implementation of insertion sort and selection sort algorithms in Python. And
+[sort_time.py](sort_time.py) contains a program that executes each of those
+algorithms on sorted and unsorted arrays and generates the graphics.
+
+### Getting start
+
+Install the needed packages
+
+```bash
+pip install -r requirements.txt
+```
+
+### Usage
+
+```bash
+python sort_time.py
+```
+
+This could take a few minutes.
+
+```bash
+$ eog sort_algorithms_graphic.png
+```
+
+![sort_algorithms_graphic.png](graphics/sort_algorithms_graphic.png)
+
