@@ -48,10 +48,16 @@ ll mem_cut_rod(ll * prices_table, ll n, ll * mem)
 // Wrapper to algorithm with memoization
 ll mem_cut_rod(ll * prices_table, ll n)
 {
-  ll mem[] = {
-    -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
-  };
-  return mem_cut_rod(prices_table, n, mem);
+  ll * mem = new ll[n + 1];
+  
+  for (ll i = 0; i <= n; ++i)
+    mem[i] = -numeric_limits<ll>::max();
+
+  ll result = mem_cut_rod(prices_table, n, mem);
+
+  delete [] mem;
+
+  return result;
 }
 
 int main()

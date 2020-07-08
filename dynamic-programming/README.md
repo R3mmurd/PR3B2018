@@ -13,7 +13,7 @@ improve the execution time.
 ```bash
 $ ./cut_rod 
 Result with basic algorithm: 56
-Execution time: 3291883 ns
+Execution time: 2445573 ns
 Result with memoizated algorithm: 56
-Execution time: 730 ns
+Execution time: 2319 ns
 ```
